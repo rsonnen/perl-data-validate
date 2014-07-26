@@ -1,5 +1,8 @@
 Revision history for Perl extension Data::Validate.
 
+0.9   20140426
+	- Added fix for longdouble bug (RT 63213) provided by Mark Hedges
+
 0.8   20070310
 	- added version prereq for Math::BigInt
 

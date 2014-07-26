@@ -9,6 +9,7 @@ use AutoLoader 'AUTOLOAD';
 use POSIX;
 use Scalar::Util qw(looks_like_number);
 use Math::BigInt;
+use Config;
 
 @ISA = qw(Exporter);
 
@@ -38,7 +39,7 @@ use Math::BigInt;
 		string	=>	[qw(is_equal_to is_alphanumeric is_printable length_is_between)],
 );
 
-$VERSION = '0.08';
+$VERSION = '0.09';
 
 
 # No preloads
@@ -177,7 +178,7 @@ sub is_integer{
 	# can do this for us, but defeats the purpose of being
 	# lightweight. So, we're going to try a huristic method to choose
 	# how to test for integernesss
-	if(length($int) > 10){
+	if(!$Config{uselongdouble} && length($int) > 10){
 		my $i = Math::BigInt->new($value);
 		return unless $i->is_int();
 		
